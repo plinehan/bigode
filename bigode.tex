@@ -71,9 +71,9 @@
 
 % handle chapter headings with our own commands.
 \newcommand{\chaptergraphics}[1]{\includegraphics[width=6cm]{#1}}
-\newcommand{\mypreface}[2]{\chapter*{\chaptergraphics{#1}\\#2}}
-%                                       * nice horizontal rule.  * the graphic.          % nice horizontal rule.           * first page of chapter on odd page, with no page numbering on back page.
-\newcommand{\mychapter}[3]{\chapter[#2]{\hrule height 1ex\bigskip\chaptergraphics{#1}\\#3\bigskip\bigskip\hrule height 1ex}\clearpage{\pagestyle{empty}\cleardoublepage}}
+\newcommand{\mypreface}[2]{\clearpage{\pagestyle{empty}\cleardoublepage}\chapter*{\chaptergraphics{#1}\\#2}}
+%                          * end last chapter with a plain page if even.             * nice horizontal rule.  * the graphic.          % nice horizontal rule.           * first page of chapter on odd page, with no page numbering on back page.
+\newcommand{\mychapter}[3]{\clearpage{\pagestyle{empty}\cleardoublepage}\chapter[#2]{\hrule height 1ex\bigskip\chaptergraphics{#1}\\#3\bigskip\bigskip\hrule height 1ex}\clearpage{\pagestyle{empty}\cleardoublepage}}
 
 % an environment for lists of ingredients
 % note that setting parskip to 0 here causes multi-paragraph items to look like
