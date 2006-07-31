@@ -30,7 +30,7 @@
 \newcommand{\threequarters}{$\frac{3}{4}$\xspace}
 \newcommand{\ordinal}[1]{$^{\text{#1}}$\xspace}
 
-% all of the header/footer settings.
+% all of the header/footer settings for "fancy" pages.
 \pagestyle{fancy}
 \fancyhead{} % clear all header fields
 \fancyhead[RE]{cooking com bigode}
@@ -39,6 +39,12 @@
 \fancyfoot{} % clear all footer fields
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.0pt}
+
+% redefine the "plain" page style to leave off page numbers.
+\fancypagestyle{plain}{%
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
 
 % disable paragraph indentation
 \setlength{\parindent}{0pt}
