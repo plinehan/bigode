@@ -1,7 +1,12 @@
 \documentclass[a4paper]{book}
 \usepackage{amstext}
-% allows us to put footnotes in section titles
+% customizing chapter/section names/styles.
+\usepackage{sectsty}
+% for controling headers/footers.
 \usepackage{fancyhdr}
+% customizing the spacing around chapters/titles.
+\usepackage{titlesec}
+% allows us to put footnotes in section titles
 \usepackage[stable]{footmisc}
 \usepackage{graphicx}
 \usepackage[pdftex]{hyperref}
@@ -22,6 +27,7 @@
 \newcommand{\threequarters}{$\frac{3}{4}$\xspace}
 \newcommand{\ordinal}[1]{$^{\text{#1}}$\xspace}
 
+% all of the header/footer settings.
 \pagestyle{fancy}
 \fancyhead{} % clear all header fields
 \fancyhead[RE]{cooking com bigode}
@@ -37,18 +43,20 @@
 % add space between paragraphs 
 \setlength{\parskip}{\baselineskip}
 
+% because we added spaces between paragraphs, all of the title spacings get
+% messed up.  here we scale them back down by 2X.
+\titlespacing{\chapter}{0pt}{*0.5}{*0.5}
+\titlespacing{\section}{0pt}{*0.5}{*0.5}
+\titlespacing{\subsection}{0pt}{*0.5}{*0.5}
+\titlespacing{\subsubsection}{0pt}{*0.5}{*0.5}
+
 % suppress footnotemark
 \makeatletter
   \renewcommand\@makefnmark{\relax}
 \makeatother
 
 % make subsubsections italic
-\makeatletter
-\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
-                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
-                                     {1.5ex \@plus .2ex}%
-                                     {\normalfont\normalsize\bfseries\itshape}}
-\makeatother
+\subsubsectionfont{\itshape}
 
 % handle chapter headings with our own commands.
 \newcommand{\chaptergraphics}[1]{\includegraphics[width=6cm]{#1}}
