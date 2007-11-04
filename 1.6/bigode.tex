@@ -1,6 +1,6 @@
+% set paper size using geometry, mas tarde
 \documentclass[]{book}
 \usepackage{amstext}
-
 
 % customizing chapter/section names/styles.
 \usepackage{sectsty}
@@ -11,31 +11,44 @@
 % allows us to put footnotes in section titles
 \usepackage[stable]{footmisc}
 \usepackage{graphicx}
-\usepackage[pdftex]{hyperref}
+
+
+% we enable hyperlinks in the electronic versions
+
+%\usepackage[pdftex]{hyperref}
+
+
+
 % for adding Creative Commons tags to the pdf.
 \usepackage{xmpincl}
 \usepackage{xspace}
 % for putting the back cover on an even page.
 \usepackage{lhelp}
-\usepackage{endnotes}
 
+% adding index for sixbynine versions
 \usepackage{makeidx}
+% use glossary instead of footnotes for foreign language words
 \usepackage{glossary}
 
-
-
+% tell latex to use the index and glossary
 \makeindex
-
 \makeglossary
+
+
+% file for stored definitions of foreign words glossary
 \include{foreignwords}
 
 
-
-% trying to set paper size with geometry package
+% set paper size with geometry package
 \usepackage[papersize={6in,9in},includeheadfoot]{geometry}
 \geometry{twoside,bindingoffset=.25in}
-\geometry{headsep=.05in,footskip=.05in}
+\geometry{headsep=.05in,footskip=.1in}
 \geometry{hmargin={.25in}, vmargin={.25in,.25in}}
+
+% shortuct to index entires
+\newcommand{\tin}[1]{#1\index{#1}}
+
+
 
 
 % slanty fractions
@@ -60,7 +73,7 @@
 \fancyhead[LE,RO]{\thepage}
 \fancyfoot{} % clear all footer fields
 \renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.0pt}
 
 % redefine the "plain" page style to leave off page numbers.
 \fancypagestyle{plain}{%
@@ -83,9 +96,9 @@
 \titlespacing{\subsubsection}{0pt}{*0.5}{*0.5}
 
 % suppress footnotemark
-%\makeatletter
-%  \renewcommand\@makefnmark{\relax}
-%\makeatother
+\makeatletter
+\renewcommand\@makefnmark{\relax}
+\makeatother
 
 % chapter names are so long, so we have to shrink the font.
 \chapterfont{\centering\LARGE}
@@ -94,7 +107,10 @@
 
 % handle chapter headings with our own commands.
 \newcommand{\chaptergraphics}[1]{\includegraphics[width=6cm]{#1}}
+
+% for preface display
 \newcommand{\mypreface}[2]{\clearpage{\pagestyle{empty}}\chapter*{\chaptergraphics{#1}\\#2}}
+
 % * end last chapter with a plain page if even.          
 % * nice horizontal rule. 
 % * the graphic.         
@@ -126,18 +142,7 @@
 %\setlength{\parskip}{0pt}}%
 {\end{enumerate}}
 
-\title{\textbf{
-  \Huge{cooking com bigode}\\
-  \bigskip
-  \includegraphics[width=10cm]{bigode.jpg}\\ 
-  \Large{vegetarian\\
-  improvisational\\
-  peasant\\
-  fusion\\
-  cuisine\\
-  for the twenty-second century}}}
-\date{}
-\author{}
+\include{titlepage}
 
 \includexmp{cc-by-nc-sa}
 
@@ -146,17 +151,21 @@
 \frontmatter
 
 \maketitle
-\include{copyright}
+%\include{copyright}
 \newpage
+\cleardoublepage
 \setcounter{tocdepth}{0}
+
 \tableofcontents
 
+% \addcontentsline{toc}{chapter}{Preface}
 \include{preface}
 
 \mainmatter
 
 % make chapters look like "5" instead of "Chapter 5".
 \renewcommand\chaptername{}
+
 % start with chapter 0.
 \setcounter{chapter}{-1}
 \include{preliminary_notes}
@@ -172,8 +181,11 @@
 
 \backmatter
 
+\addcontentsline{toc}{chapter}{Glossary}
 \printglossary
+\addcontentsline{toc}{chapter}{Index}
 \printindex
-\include{back_cover}
+
+%\include{back_cover}
 
 \end{document}
