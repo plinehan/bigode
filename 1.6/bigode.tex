@@ -1,5 +1,7 @@
-\documentclass[a4paper]{book}
+\documentclass[]{book}
 \usepackage{amstext}
+
+
 % customizing chapter/section names/styles.
 \usepackage{sectsty}
 % for controling headers/footers.
@@ -15,6 +17,26 @@
 \usepackage{xspace}
 % for putting the back cover on an even page.
 \usepackage{lhelp}
+\usepackage{endnotes}
+
+\usepackage{makeidx}
+\usepackage{glossary}
+
+
+
+\makeindex
+
+\makeglossary
+\include{foreignwords}
+
+
+
+% trying to set paper size with geometry package
+\usepackage[papersize={6in,9in},includeheadfoot]{geometry}
+\geometry{twoside,bindingoffset=.25in}
+\geometry{headsep=.05in,footskip=.05in}
+\geometry{hmargin={.25in}, vmargin={.25in,.25in}}
+
 
 % slanty fractions
 % these end up looking pretty shitty and bleed into the surrounding text.  be
@@ -38,7 +60,7 @@
 \fancyhead[LE,RO]{\thepage}
 \fancyfoot{} % clear all footer fields
 \renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.4pt}
 
 % redefine the "plain" page style to leave off page numbers.
 \fancypagestyle{plain}{%
@@ -52,6 +74,7 @@
 % add space between paragraphs 
 \setlength{\parskip}{\baselineskip}
 
+
 % because we added spaces between paragraphs, all of the title spacings get
 % messed up.  here we scale them back down by 2X.
 \titlespacing{\chapter}{0pt}{*0.0}{*0.5}
@@ -60,9 +83,9 @@
 \titlespacing{\subsubsection}{0pt}{*0.5}{*0.5}
 
 % suppress footnotemark
-\makeatletter
-  \renewcommand\@makefnmark{\relax}
-\makeatother
+%\makeatletter
+%  \renewcommand\@makefnmark{\relax}
+%\makeatother
 
 % chapter names are so long, so we have to shrink the font.
 \chapterfont{\centering\LARGE}
@@ -71,9 +94,13 @@
 
 % handle chapter headings with our own commands.
 \newcommand{\chaptergraphics}[1]{\includegraphics[width=6cm]{#1}}
-\newcommand{\mypreface}[2]{\clearpage{\pagestyle{empty}\cleardoublepage}\chapter*{\chaptergraphics{#1}\\#2}}
-%                          * end last chapter with a plain page if even.             * nice horizontal rule.  * the graphic.          % nice horizontal rule.           * first page of chapter on odd page, with no page numbering on back page.
-\newcommand{\mychapter}[3]{\clearpage{\pagestyle{empty}\cleardoublepage}\chapter[#2]{\hrule height 1ex\bigskip\chaptergraphics{#1}\\#3\bigskip\bigskip\hrule height 1ex}\clearpage{\pagestyle{empty}\cleardoublepage}}
+\newcommand{\mypreface}[2]{\clearpage{\pagestyle{empty}}\chapter*{\chaptergraphics{#1}\\#2}}
+% * end last chapter with a plain page if even.          
+% * nice horizontal rule. 
+% * the graphic.         
+% nice horizontal rule.          
+% * first page of chapter on odd page, with no page numbering on back page.
+\newcommand{\mychapter}[3]{\clearpage{\pagestyle{empty}}\chapter[#2]{\hrule height 1ex\bigskip\chaptergraphics{#1}\\#3\bigskip\bigskip\hrule height 1ex}\clearpage{\pagestyle{empty}}}
 
 % an environment for lists of ingredients
 % note that setting parskip to 0 here causes multi-paragraph items to look like
@@ -81,8 +108,10 @@
 \newenvironment{ingredients}
 {\begin{itemize}
   \sf%
-  \setlength{\itemsep}{0pt}}%
-%\setlength{\parskip}{0pt}}%
+  \setlength{\topsep}{0pt}
+  \setlength{\partopsep}{0pt}
+  \setlength{\itemsep}{0pt}}%}
+ % \setlength{\parskip}{0pt}}%
 {\end{itemize}}
 
 % an environment for steps to follow in a recipe
@@ -91,6 +120,8 @@
 \newenvironment{algorithm}
 {\begin{enumerate}
   \sf%
+  \setlength{\topsep}{0pt}
+  \setlength{\partopsep}{0pt}
   \setlength{\itemsep}{0pt}}%
 %\setlength{\parskip}{0pt}}%
 {\end{enumerate}}
@@ -116,8 +147,10 @@
 
 \maketitle
 \include{copyright}
+\newpage
 \setcounter{tocdepth}{0}
 \tableofcontents
+
 \include{preface}
 
 \mainmatter
@@ -139,6 +172,8 @@
 
 \backmatter
 
+\printglossary
+\printindex
 \include{back_cover}
 
 \end{document}
