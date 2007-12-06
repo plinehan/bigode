@@ -14,9 +14,7 @@
 
 
 % we enable hyperlinks in the electronic versions
-
 %\usepackage[pdftex]{hyperref}
-
 
 
 % for adding Creative Commons tags to the pdf.
@@ -28,11 +26,11 @@
 % adding index for sixbynine versions
 \usepackage{makeidx}
 % use glossary instead of footnotes for foreign language words
-\usepackage{glossary}
+\usepackage{glossaries}
 
 % tell latex to use the index and glossary
 \makeindex
-\makeglossary
+\makeglossaries
 
 
 % file for stored definitions of foreign words glossary
@@ -47,6 +45,8 @@
 
 % shortuct to index entires
 \newcommand{\tin}[1]{#1\index{#1}}
+
+% shortcut to glossary entires
 
 
 
@@ -139,7 +139,7 @@
   \setlength{\topsep}{0pt}
   \setlength{\partopsep}{0pt}
   \setlength{\itemsep}{0pt}}%
-%\setlength{\parskip}{0pt}}%
+% \setlength{\parskip}{0pt}}%
 {\end{enumerate}}
 
 \include{titlepage}
@@ -168,21 +168,21 @@
 
 % start with chapter 0.
 \setcounter{chapter}{-1}
-\include{preliminary_notes}
+%\include{preliminary_notes}
 \include{feijao}
 \include{zucchini}
-\include{stirfry}
-\include{chana_masala}
-\include{veggie_burgers}
-\include{stuffed_peppers}
-\include{squash}
-\include{beet_soup}
-\include{favorites}
+%\include{stirfry}
+%\include{chana_masala}
+%\include{veggie_burgers}
+%\include{stuffed_peppers}
+%\include{squash}
+%\include{beet_soup}
+%\include{favorites}
 
 \backmatter
 
 \addcontentsline{toc}{chapter}{Glossary}
-\printglossary
+\printglossaries
 \addcontentsline{toc}{chapter}{Index}
 \printindex
 
